@@ -1,0 +1,100 @@
+        -:    0:Source:testme.c
+        -:    0:Graph:testme.gcno
+        -:    0:Data:testme.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include<stdio.h>
+        -:    2:#include<string.h>
+        -:    3:#include<stdlib.h>
+        -:    4:#include<time.h>
+        -:    5:
+      162:    6:char inputChar()
+        -:    7:{
+        -:    8:	char randChar;
+      162:    9:    int randPick = rand() % 9;
+      162:   10:	if (randPick == 0)
+       14:   11:		randChar = '[';
+      148:   12:	else if (randPick == 1)
+       16:   13:		randChar = '(';
+      132:   14:	else if (randPick == 2)
+       24:   15:		randChar = '{';
+      108:   16:	else if (randPick == 3)
+       21:   17:		randChar = ' ';
+       87:   18:	else if (randPick == 4)
+       24:   19:		randChar = 'a';
+       63:   20:	else if (randPick == 5)
+       12:   21:		randChar = 'x';
+       51:   22:	else if (randPick == 6)
+       16:   23:		randChar = '}';
+       35:   24:	else if (randPick == 7)
+       19:   25:		randChar = ')';
+       16:   26:	else if (randPick == 8)
+       16:   27:		randChar = ']'; 
+      162:   28:	return randChar;
+        -:   29:}
+        -:   30:
+      162:   31:char *inputString()
+        -:   32:{
+        -:   33:	static char string[6];
+        -:   34:	int i;
+        -:   35:	int randPick;
+        -:   36:	char select;
+      972:   37:	for (i = 0; i < 5; i++)
+        -:   38:	{
+      810:   39:		randPick = rand() % 5;
+      810:   40:		if (randPick == 0)
+      159:   41:			select = 'r';
+      651:   42:		else if (randPick == 1)
+      165:   43:			select = 'e';
+      486:   44:		else if (randPick == 2)
+      166:   45:			select = 's';
+      320:   46:		else if (randPick == 3)
+      166:   47:			select = 'e';
+      154:   48:		else if (randPick == 4)
+      154:   49:			select = 't';
+      810:   50:		string[i] = select;
+        -:   51:	}
+      162:   52:	string[5] = '\0';
+      162:   53:	return string;
+        -:   54:}
+        -:   55:
+        1:   56:void testme()
+        -:   57:{
+        1:   58:  int tcCount = 0;
+        -:   59:  char *s;
+        -:   60:  char c;
+        1:   61:  int state = 0;
+        -:   62:  while (1)
+        -:   63:  {
+      162:   64:    tcCount++;
+      162:   65:    c = inputChar();
+      162:   66:    s = inputString();
+      162:   67:    printf("Iteration %d: c = %c, s = %s, state = %d\n", tcCount, c, s, state);
+        -:   68:
+      162:   69:    if (c == '[' && state == 0) state = 1;
+      162:   70:    if (c == '(' && state == 1) state = 2;
+      162:   71:    if (c == '{' && state == 2) state = 3;
+      162:   72:    if (c == ' '&& state == 3) state = 4;
+      162:   73:    if (c == 'a' && state == 4) state = 5;
+      162:   74:    if (c == 'x' && state == 5) state = 6;
+      162:   75:    if (c == '}' && state == 6) state = 7;
+      162:   76:    if (c == ')' && state == 7) state = 8;
+      162:   77:    if (c == ']' && state == 8) state = 9;
+      162:   78:    if (s[0] == 'r' && s[1] == 'e'
+       14:   79:       && s[2] == 's' && s[3] == 'e'
+        1:   80:       && s[4] == 't' && s[5] == '\0'
+        1:   81:       && state == 9)
+        -:   82:    {
+        1:   83:      printf("error ");
+        1:   84:      exit(200);
+        -:   85:    }
+      161:   86:  }
+        -:   87:}
+        -:   88:
+        -:   89:
+        1:   90:int main(int argc, char *argv[])
+        -:   91:{
+        1:   92:    srand(time(NULL));
+        1:   93:    testme();
+    #####:   94:    return 0;
+        -:   95:}
