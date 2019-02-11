@@ -33,7 +33,44 @@ runtests: testDrawCard
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+unittestresults: unittest1.c unittest2.c unittest3.c unittest4.c cardtest1.c cardtest2.c cardtest3.c cardtest4.c
+	echo "Unit tests" > unittestresults.out
+	
+	echo "unitteset1.c:" >> unittestresults.out
+	gcc -o unittest1 unittest1.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./unittest1 >> unittestresults.out
+	
+	echo "unitteset2.c:" >> unittestresults.out
+	gcc -o unittest2 unittest2.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./unittest2 >> unittestresults.out
+	
+	echo "unitteset3.c:" >> unittestresults.out
+	gcc -o unittest3 unittest3.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./unittest3 >> unittestresults.out
+	
+	echo "unitteset4.c:" >> unittestresults.out
+	gcc -o unittest4 unittest4.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./unittest4 >> unittestresults.out
+	
+	echo "cardtest1.c:" >> unittestresults.out
+	gcc -o cardtest1 cardtest1.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./cardtest1 >> unittestresults.out
+	
+	echo "cardtest2.c:" >> unittestresults.out
+	gcc -o cardtest2 cardtest2.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./cardtest2 >> unittestresults.out
+	
+	echo "cardtest3.c:" >> unittestresults.out
+	gcc -o cardtest3 cardtest3.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./cardtest3 >> unittestresults.out
+	
+	echo "cardtest4.c:" >> unittestresults.out
+	gcc -o cardtest4 cardtest4.c dominion.c asserttrue.c rngs.c $(CFLAGS)
+	./cardtest4 >> unittestresults.out
+	
+	gcov dominion.c -b >> unittestresults.out
+
 all: playdom player 
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittestresults.out unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 
