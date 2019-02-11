@@ -1,0 +1,71 @@
+Unit tests
+unitteset1.c:
+All tests passed
+unitteset2.c:
+Test 1: gain card to discard
+Success
+Test 2: gain card to deck
+Success
+Test 3: Gain card to hand
+Success
+Test 4: Other players state unaffected
+Success
+Test 5: Drawn card is decreased
+Success
+unitteset3.c:
+Test 1: Last card is removed from hand
+Success
+Test 2: last card is removed and trashed
+Success
+Test 3: Only one card in hand
+Success
+Test 4: Middle card in hand
+Success
+Test 5: Other player is not affected
+Success
+unitteset4.c:
+Test: The correct hand position is returned for the correct player.
+Success
+cardtest1.c:
+Test 1: Normal play of card
+Success
+Test 2: Drawn cards were treasure
+Success
+Test 3: other player maintained state
+Success
+cardtest2.c:
+Test 1: The player recieves 3 cards
+Failed
+Test 2: The cards came from their own deck
+Success
+Test 3: No state change for other players
+Success
+Test 4: No state changes for kingdom card piles
+Success
+cardtest3.c:
+0
+Test 1: villages effects worked
+0
+Success
+Test 2: Cards were drawn from players own deck
+Success
+Test 3: No state change for other player
+Success
+Test 4: Kingdom cards were not changed
+Success
+cardtest4.c:
+Test 1: Effects
+Success
+Test 2: Cards were drawn from players own deck
+Success
+Test 3: No state change for other player
+Success
+Test 4: Kingdom cards were not changed
+Success
+File 'dominion.c'
+Lines executed:20.43% of 558
+Branches executed:22.78% of 417
+Taken at least once:14.15% of 417
+Calls executed:10.64% of 94
+Creating 'dominion.c.gcov'
+
