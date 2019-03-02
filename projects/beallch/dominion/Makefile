@@ -29,10 +29,23 @@ runtests: testDrawCard
 	gcov dominion.c >> unittestresult.out
 	cat dominion.c.gcov >> unittestresult.out
 
+asserttrue.o: asserttrue.h asserttrue.c
+	gcc -c asserttrue.c -g $(CFLAGS)
 
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
+randomadventurer: randomtestadventurer.c dominion.o rngs.o asserttrue.o
+	echo "Adventurer results" > randomtestadventurer.out
+	gcc -o randomtestadventurer randomtestadventurer.c dominion.o rngs.o asserttrue.o $(CFLAGS)
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov dominion.c -f -b | grep -A 5 'adventurerFunc' >> randomtestadventurer.out
+	
+randomtest2: randomtestcard2.c dominion.o rngs.o asserttrue.o
+	echo "Random Test 2 Results" > randomtest2.out
+	gcc -o randomtest2 randomtestcard2.c dominion.o rngs.o asserttrue.o $(CFLAGS)
+	./randomtest2 >> randomtest2.out
+	gcov dominion.c -f -b | grep -A 5 'mineFunc' >> randomtest2.out
 all: playdom player 
 
 clean:
