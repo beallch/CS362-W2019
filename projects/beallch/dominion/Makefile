@@ -42,10 +42,16 @@ randomadventurer: randomtestadventurer.c dominion.o rngs.o asserttrue.o
 	gcov dominion.c -f -b | grep -A 5 'adventurerFunc' >> randomtestadventurer.out
 	
 randomtest2: randomtestcard2.c dominion.o rngs.o asserttrue.o
-	echo "Random Test 2 Results" > randomtest2.out
+	echo "Random Test 2 Results" > randomtestcard2.out
 	gcc -o randomtest2 randomtestcard2.c dominion.o rngs.o asserttrue.o $(CFLAGS)
-	./randomtest2 >> randomtest2.out
-	gcov dominion.c -f -b | grep -A 5 'mineFunc' >> randomtest2.out
+	./randomtest2 >> randomtestcard2.out
+	gcov dominion.c -f -b | grep -A 5 'mineFunc' >> randomtestcard2.out
+
+randomtest1: randomtestcard1.c dominion.o rngs.o asserttrue.o
+	echo "Random Test 1 Results" > randomtestcard1.out
+	gcc -o randomtest1 randomtestcard1.c dominion.o rngs.o asserttrue.o $(CFLAGS)
+	./randomtest1 >> randomtestcard1.out
+	gcov dominion.c -f -b | grep -A 5 'smithyFunc' >> randomtestcard1.out
 all: playdom player 
 
 clean:
