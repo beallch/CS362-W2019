@@ -1,0 +1,8 @@
+Random Test 2 Results
+Failures: 200000
+Function 'mineFunc'
+Lines executed:100.00% of 15
+Branches executed:100.00% of 14
+Taken at least once:92.86% of 14
+Calls executed:100.00% of 5
+
