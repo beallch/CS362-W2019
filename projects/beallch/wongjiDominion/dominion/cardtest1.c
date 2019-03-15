@@ -22,7 +22,7 @@ int main() {
 
 	printf("Test 1: Normal play of card\n");
 	cardEffect(adventurer, 0, 0, 0, &copy, 0, &bonus);//This useage of the card will be tested with
-	fails += asserttrue(copy.handCount[0] = game.handCount[0] +2);
+	fails += asserttrue(copy.handCount[0] + 1 == game.handCount[0]);
 	if (fails)
 		printf("Failure\n");
 	else
@@ -30,8 +30,8 @@ int main() {
 
 	fails = 0;
 	printf("Test 2: Drawn cards were treasure\n");
-	fails += asserttrue(copy.hand[0][copy.handCount[0]-2] == copper || copy.hand[0][5] == silver || copy.hand[0][5] == gold);
-	fails += asserttrue(copy.hand[0][copy.handCount[0]-1] == copper || copy.hand[0][5] == silver || copy.hand[0][5] == gold);
+	fails += asserttrue(copy.hand[0][copy.handCount[0]-2] == copper || copy.hand[0][copy.handCount[0]-2] == silver || copy.hand[0][copy.handCount[0]-2] == gold);
+	fails += asserttrue(copy.hand[0][copy.handCount[0]-1] == copper || copy.hand[0][copy.handCount[0]-1] == silver || copy.hand[0][copy.handCount[0]-1] == gold);
 
 	if (fails)
 		printf("Failure\n");

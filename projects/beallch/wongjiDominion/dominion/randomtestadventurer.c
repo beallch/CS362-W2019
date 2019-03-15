@@ -15,7 +15,7 @@ int testAdventurer(int p, struct gameState *change)
 	struct gameState orig;
 	memcpy(&orig, change, sizeof(struct gameState));
 	int temphand[MAX_HAND];
-	int returnVal = adventurerFunc(0, p, change, temphand, 0);
+	int returnVal = cardAdventurer(p, temphand, 0, change);
 
 	count += asserttrue(returnVal == 0);
 	//check for things that are changed by adventurer

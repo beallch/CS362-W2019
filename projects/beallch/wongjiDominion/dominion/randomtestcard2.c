@@ -21,13 +21,13 @@ int testMine(int p, struct gameState *change)
 	change->hand[p][5] = 3;
 	memcpy(&orig, change, sizeof(struct gameState));
 	// randomly choose a card from the players hand
-	int choice1 = floor(Random() * 5 + 1);
+	int choice1 = floor(Random() * 3 + 1);
 	
 	int choice2 = floor(Random() * 27 -1); //number between -1 and 25
 	choice2 += floor(Random() * 3); // now makes the range -1 to 27, allows more testing
 	
 	
-	int returnVal = mineFunc(choice2, choice1, p, change, 0);
+	int returnVal = cardMine(choice1, choice2, p, change, 0);
 
 	count += asserttrue(returnVal == 0);
 	//check for things that are changed by minion
@@ -37,7 +37,7 @@ int testMine(int p, struct gameState *change)
 	count += asserttrue(orig.numActions == change->numActions);
 	count += asserttrue(orig.numBuys == change->numBuys);
 	count += asserttrue(orig.deckCount[p] == change->deckCount[p]);
-	count += asserttrue(orig.discardCount[p] + 1 == change->discardCount[p]);
+	count += asserttrue(orig.discardCount[p] + 2 == change->discardCount[p]);
 
 }
 

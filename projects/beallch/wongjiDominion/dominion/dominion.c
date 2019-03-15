@@ -17,9 +17,9 @@ int cardAdventurer(int currentPlayer, int temphand[], int temphandCount, struct 
 {
 	int drawntreasure = 0;
 
-	while (drawntreasure <= 2)
+	while (drawntreasure < 2)
 	{
-		if (state->deckCount[currentPlayer] <= 1)
+		if (state->deckCount[currentPlayer] < 1)
 		{
 			shuffle(currentPlayer, state);		//if the deck is empty we need to shuffle discard and add to deck
 		}
@@ -39,7 +39,7 @@ int cardAdventurer(int currentPlayer, int temphand[], int temphandCount, struct 
 		}
 	}
 
-	while (temphandCount > 1)
+	while (temphandCount >= 1)
 	{
 		state->discard[currentPlayer][state->discardCount[currentPlayer]++] = temphand[temphandCount - 1];		// discard all cards in play that have been drawn
 		temphandCount--;
@@ -51,7 +51,7 @@ int cardAdventurer(int currentPlayer, int temphand[], int temphandCount, struct 
 int cardCouncilRoom(int currentPlayer, struct gameState *state, int handPos)
 {
 	//+4 Cards
-	for (int i = 0; i <= 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
@@ -84,7 +84,7 @@ int cardFeast(int choice1, int currentPlayer, int temphand[], struct gameState *
 	}
 
 	//Update Coins for Buy
-	//updateCoins(currentPlayer, state, 5);
+	updateCoins(currentPlayer, state, 5);
 
 	int x = 1;//Condition to loop on
 	while (x == 1) {//Buy one card
@@ -174,7 +174,7 @@ int cardSmithy(int currentPlayer, struct gameState *state, int handPos)
 	}
 
 	//discard card from hand
-	//discardCard(handPos, currentPlayer, state, 0);
+	discardCard(handPos, currentPlayer, state, 0);
 
 	return 0;
 }

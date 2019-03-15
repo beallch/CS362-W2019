@@ -25,8 +25,8 @@ int main() {
 	printf("Test 1: The player recieves 3 cards\n");
 	fails = 0;
 	int playedSize = copy.playedCardCount -1;
-	fails += asserttrue(copy.handCount[0] == game.handCount[0] - 2);
-	fails += asserttrue(copy.playedCards[playedSize] == smithy);
+	fails += asserttrue(copy.handCount[0] -2 == game.handCount[0]);
+
 
 	if (fails)
 		printf("Failed\n");
